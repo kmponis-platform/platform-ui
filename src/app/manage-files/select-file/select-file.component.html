@@ -1,0 +1,30 @@
+<app-navigation-bar></app-navigation-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card red accent-3">
+        <div class="card-content center white-text">
+          <span class="card-title">
+            Select File
+          </span>
+        </div>
+        <div class="card-action">
+          <form #selectFile='ngForm' (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <div><i class="material-icons">flip_to_front</i>Choose File</div>
+                <input type='file' ngModel name="file" (change)="fileChangeListener($event)" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button [disabled]="!selectFile.valid" class="btn-large btn-submit indigo darken-1" type="submit">Open</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="center">
+  <h1 mat-dialog-title>Enter your computer name</h1>
+  <div mat-dialog-content>
+    <p>This is to enable the test to open your local Microsoft Office applications.</p>
+    <input matInput [(ngModel)]="userFilePath.path">
+  </div>
+  <div class="buttonCenter" mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="userFilePath.path" cdkFocusInitial>Done</button>
+    <button mat-button [mat-dialog-close]="null">Cancel</button>
+  </div>
+</div>
