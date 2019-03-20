@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { LogService } from './log.service';
+import { Endpoint } from '../_config/endpoint';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
-  readonly rootUrl = 'http://localhost:8080/web-service-ecdl/excel'
   readonly httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
   constructor(private http: HttpClient, private logService: LogService) { }
 
-  openExcel(filePath: string): Observable<any> {
-    var url = this.rootUrl + "/open";
+  openFile(filePath: string): Observable<any> {
+    var url = Endpoint.WEB_SERVICE_FILE  + "/open";
     return this.http.post(url, filePath, this.httpOptions)
       .pipe(retry(1), 
         catchError(error => { 
-          return this.logService.handleErrorThrowError(this.logService.logMessage(url, "Failed to post to web-service-ecdl"), error)
+          return this.logService.handleErrorThrowError(this.logService.logMessage(url, "Failed to post to web-service-file"), error)
         })
       );
   }

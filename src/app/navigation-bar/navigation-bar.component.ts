@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { TimeoutService } from '../_services/timeout.service';
 import { Router } from '@angular/router';
-import { Constants } from '../_config/constants';
+import { Mapping } from '../_config/mapping';
 import { FileService } from '../_services/file.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class NavigationBarComponent implements OnInit {
   }
 
   goToHome(): void {
-    this.router.navigate([Constants.HOME_URL]);
+    this.router.navigate([Mapping.HOME_URL]);
   }
 
 }

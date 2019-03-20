@@ -18,25 +18,21 @@ export class SignInComponent implements OnInit {
   onSubmit(username: string, password: string): void {
     this.userService.initialiseVariables();
 
-    if (username == "admin" || username == "user") {
-      this.userService.signin("notConnectedToDB", username, "300");
-    } else {
-      // TODO Display a different message when web-services-authentication is down:
-      // Browser and Concole
-      this.userService.userAuthentication(username, password).subscribe(
-        (data: Token)=> {
-          if (data == null) {
-            console.log("User: " + username + " - Invalid username or password!");
-            this.userService.isLoginError = true;
-          } else if (data.accessToken != null && data.sessionTimeOut != null) {
-            this.userService.signin(data.accessToken.toString(), username, data.sessionTimeOut.toString());
-          }
-        },
-        (err: HttpErrorResponse)=> {
+    // TODO Display a different message when web-services-authentication is down:
+    // Browser and Concole
+    this.userService.userAuthentication(username, password).subscribe(
+      (data: Token)=> {
+        if (data == null) {
+          console.log("User: " + username + " - Invalid username or password!");
           this.userService.isLoginError = true;
+        } else if (data.accessToken != null && data.sessionTimeOut != null) {
+          this.userService.signin(data.accessToken.toString(), username, data.sessionTimeOut.toString());
         }
-      );
-    }
+      },
+      (err: HttpErrorResponse)=> {
+        this.userService.isLoginError = true;
+      }
+    );
   }
 
 }

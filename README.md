@@ -13,8 +13,10 @@ An AngularJS ui to implement platform's front-end.
 
 ## Prerequisites
 * To run the application you need to have git, mvn, noteJS and npm package installed.
-* Run web-service
-<br>[ReadMe.md] of https://github.com/kmponis-platform/web-service-
+* Run web-service-authentication
+<br>[ReadMe.md] of https://github.com/kmponis-platform/web-service-authentication.git
+* Run web-service-file
+<br>[ReadMe.md] of https://github.com/kmponis-platform/web-service-file.git
 
 ## Download
 * Open command line and move to your workspace.

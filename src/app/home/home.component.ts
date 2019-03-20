@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { Router } from '@angular/router';
-import { Constants } from '../_config/constants';
+import { Mapping } from '../_config/mapping';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,6 @@ export class HomeComponent implements OnInit {
   } 
 
   goToSelectFile(): void {
-    this.router.navigate([Constants.SELECT_FILE_URL]);
+    this.router.navigate([Mapping.SELECT_FILE_URL]);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Constants } from '../_config/constants';
+import { Mapping } from '../_config/mapping';
 import { UserService } from '../_services/user.service';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.userService.signout('hack');
-      this.router.navigate([Constants.SIGNIN_URL]);
+      this.router.navigate([Mapping.SIGNIN_URL]);
       return false;
     }
   }

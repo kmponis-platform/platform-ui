@@ -44,7 +44,7 @@ export class SelectFileComponent implements OnInit {
     this.filePath = "C:\\Users\\" + this.fileService.getUserFilePath() + "\\Desktop\\" + this.fileName;
     console.log("FilePath: " + this.filePath);
 
-    this.fileService.openExcel(this.filePath)
+    this.fileService.openFile(this.filePath)
       .subscribe((response) => {}, 
         (error) => { this.popUpSetUserFilePath() });
   }
