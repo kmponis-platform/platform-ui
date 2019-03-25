@@ -9,13 +9,11 @@ import { Endpoint } from '../_config/endpoint';
   providedIn: 'root'
 })
 export class FileService {
-  readonly httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-
   constructor(private http: HttpClient, private logService: LogService) { }
 
   openFile(filePath: string): Observable<any> {
     var url = Endpoint.WEB_SERVICE_FILE  + "/open";
-    return this.http.post(url, filePath, this.httpOptions)
+    return this.http.post(url, filePath, Endpoint.HTTP_OPTIONS_JSON)
       .pipe(retry(1), 
         catchError(error => { 
           return this.logService.handleErrorThrowError(this.logService.logMessage(url, "Failed to post to web-service-file"), error)
