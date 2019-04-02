@@ -69,9 +69,6 @@ export class UserService {
   }
 
   isUserRoleUser(): boolean {
-    // if (localStorage.getItem('userRole') == Security.USER) {
-    //   return true;
-    // }
     return localStorage.getItem('userRole') == Security.USER;
   }
 }
