@@ -44,6 +44,8 @@ export class SelectFileComponent implements OnInit {
     this.filePath = "C:\\Users\\" + this.fileService.getUserFilePath() + "\\Desktop\\" + this.fileName;
     console.log("FilePath: " + this.filePath);
 
+    // TODO Display a different pop-up when web-service-file is down:
+    // Browser and Concole
     this.fileService.openFile(this.filePath)
       .subscribe((response) => {}, 
         (error) => { this.popUpSetUserFilePath() });

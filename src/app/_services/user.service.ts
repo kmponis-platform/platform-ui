@@ -7,6 +7,7 @@ import { Mapping } from '../_config/mapping';
 import { LogService } from './log.service';
 import { Token } from '../_model/token.model';
 import { Endpoint } from '../_config/endpoint';
+import { Security } from '../_config/security';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,16 @@ export class UserService {
       );
   }
 
-  signin(accessToken: string, sessionUser: string, sessionTimeOut: string): void {
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('sessionUser', sessionUser);
-    localStorage.setItem('sessionTimeOut', sessionTimeOut);
-    console.log("AccessToken: " + accessToken + " - SessionUser: " + sessionUser + " - sessionTimeOut: "+ sessionTimeOut);
+  signin(token: Token): void {
+    var userRole = token.userRole;
+    var accessToken = token.accessToken;
+    var sessionTimeOut = token.sessionTimeOut;
+    if (userRole != null && accessToken != null && sessionTimeOut != null) {
+      localStorage.setItem('userRole', userRole.toString());
+      localStorage.setItem('accessToken', accessToken.toString());
+      localStorage.setItem('sessionTimeOut', sessionTimeOut.toString());
+    }
+    console.log("userRole: " + userRole + " - accessToken: " + accessToken + " - sessionTimeOut: "+ sessionTimeOut);
     this.router.navigate([Mapping.HOME_URL]);
   }
 
@@ -45,8 +51,8 @@ export class UserService {
     } else if (source == 'hack') {
       this.isHackUrl = true;
     }
+    localStorage.removeItem('userRole');
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('sessionUser');
     localStorage.removeItem('sessionTimeOut');
     this.router.navigate([Mapping.SIGNIN_URL]);
   }
@@ -58,7 +64,14 @@ export class UserService {
     this.isHackUrl = false;
   }
   
-  getSessionUser(): string {
-    return localStorage.getItem('sessionUser');
+  getUserRole(): string {
+    return localStorage.getItem('userRole');
+  }
+
+  isUserRoleUser(): boolean {
+    // if (localStorage.getItem('userRole') == Security.USER) {
+    //   return true;
+    // }
+    return localStorage.getItem('userRole') == Security.USER;
   }
 }

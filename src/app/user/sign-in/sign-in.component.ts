@@ -25,8 +25,8 @@ export class SignInComponent implements OnInit {
         if (data == null) {
           console.log("User: " + username + " - Invalid username or password!");
           this.userService.isLoginError = true;
-        } else if (data.accessToken != null && data.sessionTimeOut != null) {
-          this.userService.signin(data.accessToken.toString(), username, data.sessionTimeOut.toString());
+        } else {
+          this.userService.signin(data);
         }
       },
       (err: HttpErrorResponse)=> {
